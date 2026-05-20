@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import {
   BadgeCheck,
   Bike,
@@ -6,7 +7,6 @@ import {
   ChevronRight,
   Clock3,
   Hammer,
-  Image as ImageIcon,
   Leaf,
   Mail,
   MapPin,
@@ -19,6 +19,9 @@ import {
   Star,
   Trees,
 } from 'lucide-react'
+import haketusBeforeAfterImg from './assets/before-after/haketus-before-after.jpg'
+import pihanSiistiminenBeforeAfterImg from './assets/before-after/pihan-siistiminen-before-after.jpg'
+import raivaustyotBeforeAfterImg from './assets/before-after/raivaustyot-before-after.jpg'
 import haketusImg from './assets/services/haketus.jpg'
 import monkkarityotImg from './assets/services/monkkarityot.jpg'
 import moottorisahatyotImg from './assets/services/moottorisahatyot.jpg'
@@ -42,6 +45,28 @@ const mainServices = [
   'Puiden kaato',
   'Nurmikonleikkuu',
   'Pihan siistiminen',
+]
+
+const transformations = [
+  {
+    title: 'Raivaustyöt',
+    image: raivaustyotBeforeAfterImg,
+    before: 'Umpikasvanut pusikko ja hoitamaton pihan reuna',
+    after: 'Avattu, siistitty ja helpommin käytettävä piha',
+  },
+  {
+    title: 'Haketus',
+    image: haketusBeforeAfterImg,
+    before: 'Iso oksa- ja risukasa työn jäljiltä',
+    after: 'Siisti alue ja hake valmiina hyötykäyttöön',
+    featured: true,
+  },
+  {
+    title: 'Pihan siistiminen',
+    image: pihanSiistiminenBeforeAfterImg,
+    before: 'Lehtiä, oksia ja pihajätettä kulkureitillä',
+    after: 'Puhdas, selkeä ja huoliteltu pihapiiri',
+  },
 ]
 
 const images = {
@@ -416,28 +441,52 @@ function BeforeAfter() {
   return (
     <section id="kuvat" className="bg-white py-18 sm:py-24">
       <div className="container-shell">
-        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-          <div className="max-w-2xl">
-            <p className="section-kicker">Ennen ja jälkeen</p>
-            <h2 className="section-title">Tulos näkyy heti pihassa</h2>
-          </div>
-          <a className="inline-flex items-center gap-2 rounded-md border border-[#cfc7b7] px-5 py-3 font-black uppercase tracking-wide text-[#15170f] hover:bg-[#f7f4ec]" href="#yhteys">
-            <ImageIcon className="size-5 text-[#5f821e]" aria-hidden="true" />
-            Pyydä arvio
-          </a>
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="section-kicker">Ennen ja jälkeen</p>
+          <h2 className="section-title">Tulos näkyy heti pihassa</h2>
+          <p className="mt-4 text-lg leading-8 text-[#5c604f]">
+            Selkeä muutos ilman ylimääräistä säätöä.
+          </p>
         </div>
 
-        <div className="mt-8 grid gap-5 lg:grid-cols-2">
-          {[
-            ['Ennen', images.before, 'Raivattava, umpeenkasvanut pihan reuna'],
-            ['Jälkeen', images.after, 'Siistitty ja avarampi piha käyttöön'],
-          ].map(([label, src, alt]) => (
-            <figure key={label} className="relative overflow-hidden rounded-lg bg-[#15170f]">
-              <img className="h-[330px] w-full object-cover sm:h-[430px]" src={src} alt={alt} loading="lazy" />
-              <figcaption className="absolute bottom-4 left-4 rounded bg-black/75 px-4 py-2 text-sm font-black uppercase tracking-wide text-white">
-                {label}
-              </figcaption>
-            </figure>
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          {transformations.map(({ title, image, before, after, featured }) => (
+            <article
+              key={title}
+              className={`group overflow-hidden rounded-lg border bg-[#f7f4ec] shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl ${
+                featured ? 'border-[#ec7b23]/50 shadow-[0_20px_55px_rgba(236,123,35,0.14)]' : 'border-[#d9d2c2]'
+              }`}
+            >
+              <div className="relative overflow-hidden bg-[#15170f]">
+                <img
+                  className="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                  src={image}
+                  alt={`${title}: ennen ja jälkeen tehty pihatyö`}
+                  loading="lazy"
+                />
+                <div className="absolute inset-y-0 left-1/2 w-px bg-white/85" aria-hidden="true" />
+                <div className="absolute left-3 top-3 rounded bg-black/78 px-3 py-1 text-xs font-black uppercase tracking-wide text-white">
+                  Ennen
+                </div>
+                <div className={`absolute right-3 top-3 rounded px-3 py-1 text-xs font-black uppercase tracking-wide text-white ${featured ? 'bg-[#ec7b23]' : 'bg-[#5f821e]'}`}>
+                  Jälkeen
+                </div>
+              </div>
+
+              <div className="p-5">
+                <h3 className="text-xl font-black uppercase text-[#15170f]">{title}</h3>
+                <div className="mt-4 grid gap-3">
+                  <div className="rounded-md border border-[#e1dacb] bg-white p-4">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#7d796f]">Ennen</p>
+                    <p className="mt-1 text-sm leading-6 text-[#4b5040]">{before}</p>
+                  </div>
+                  <div className={`rounded-md p-4 ${featured ? 'bg-[#15170f] text-white' : 'bg-[#eaf0dc]'}`}>
+                    <p className={`text-xs font-black uppercase tracking-[0.18em] ${featured ? 'text-[#f4a261]' : 'text-[#5f821e]'}`}>Jälkeen</p>
+                    <p className={`mt-1 text-sm leading-6 ${featured ? 'text-white/78' : 'text-[#3d4233]'}`}>{after}</p>
+                  </div>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </div>
@@ -617,6 +666,8 @@ export default function App() {
       </main>
       <Footer />
       <MobileBottomCta />
+      {/* Root placement lets Vercel Analytics observe page views across the full Vite app. */}
+      <Analytics />
     </>
   )
 }
