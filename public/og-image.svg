@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Haantion Pihapalvelu</title>
+  <desc id="desc">Pihatyöt, raivaus ja haketus Joensuun alueella</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0c0f0a"/>
+      <stop offset="0.55" stop-color="#17210f"/>
+      <stop offset="1" stop-color="#385816"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1010" cy="90" r="210" fill="#5f821e" opacity="0.18"/>
+  <circle cx="1110" cy="500" r="270" fill="#ec7b23" opacity="0.12"/>
+  <g transform="translate(88 80)">
+    <rect width="86" height="86" rx="10" fill="#5f821e"/>
+    <path d="M43 18 20 57h15v12h16V57h15L43 18Z" fill="#f7f4ec"/>
+    <text x="112" y="34" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900" letter-spacing="1">HAANTION</text>
+    <text x="112" y="70" fill="#9fc15a" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="900" letter-spacing="6">PIHAPALVELU</text>
+  </g>
+  <text x="88" y="255" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="900">Pihatyöt, raivaus</text>
+  <text x="88" y="340" fill="#9fc15a" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="900">ja haketus Joensuu</text>
+  <text x="88" y="425" fill="#e9eadf" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700">Raivaustyöt • Moottorisahatyöt • Puiden kaato • Nurmikonleikkuu</text>
+  <text x="88" y="505" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="900">050 404 0521</text>
+  <text x="325" y="505" fill="#cdd9bd" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Joensuu ja lähialueet</text>
+</svg>
